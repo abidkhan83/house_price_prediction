@@ -25,15 +25,14 @@ The project focuses heavily on **real-world data cleaning**, **feature engineeri
   - **Linear Regression** achieved the best and most stable performance.
 
    **Evaluation Metrics**
-  - Measured **Accuracy**, **Precision**, **Recall**, **F1-Score**, and **Mean Squared Error (MSE)**.
+  - Measured **Accuracy**, 
   - Visualized model results using **Matplotlib**.
 
 -  **Flask Deployment**
   - Built a Flask web app allowing users to input location, area, bedrooms, and bathrooms.
   - Frontend dynamically extracts location and passes it to the backend model.
   - Predicts and displays estimated house price instantly.
-  - ## 📸 Example Prediction Interface
-   ![Flask App Screenshot](flask_app_screenshot.png)
+  
 
 
 ---
