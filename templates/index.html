@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>House Price Predictor</h2>
+    <form id="predict-form">
+        <label>Area (in sqft):</label><br>
+        <input type="number" name="area" required><br><br>
+
+        <label>BHK:</label><br>
+        <input type="number" name="bhk" required><br><br>
+
+        <label>Bath:</label><br>
+        <input type="number" name="bath" required><br><br>
+
+        <label>Location:</label><br>
+        <select name="location" required>
+            {% for loc in locations %}
+                <option value="{{ loc }}">{{ loc }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Predict Price</button>
+    </form>
+
+    <h3 id="result"></h3>
+
+    <script>
+        const form = document.getElementById('predict-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            fetch('/predict', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.price) {
+                    document.getElementById('result').innerText = "Estimated Price: ₹" + data.price + " Lakhs";
+                } else {
+                    document.getElementById('result').innerText = "Error: " + data.error;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
